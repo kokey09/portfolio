@@ -5,6 +5,7 @@ export default {
         extend: {
             colors: {
                 dark: "#131313", // black
+                'md-dark': "#979797", // black
                 light: "#EEEEEE", // white
                 accent: "#0088CC", //blue
                 secondary: "#666666", // gray

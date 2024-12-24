@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 
-const useIntersectionObserver = (callback, options) => {
+function useIntersectionObserver(callback, options) {
     const elementsRef = useRef([]);
 
     useEffect(() => {
+        // elementsRef array
+        const currentElements = elementsRef.current;
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -12,24 +14,24 @@ const useIntersectionObserver = (callback, options) => {
             });
         }, options);
 
-        elementsRef.current.forEach((element) => {
+        currentElements.forEach((element) => {
             if (element) observer.observe(element);
         });
 
-        return () => {
-            elementsRef.current.forEach((element) => {
+        function cleanup() {
+            currentElements.forEach((element) => {
                 if (element) observer.unobserve(element);
             });
-        };
+        }
+
+        return cleanup;
     }, [callback, options]);
 
-    const setRef = (element) => {
+    return (element) => {
         if (element && !elementsRef.current.includes(element)) {
             elementsRef.current.push(element);
         }
     };
-
-    return setRef;
-};
+}
 
 export default useIntersectionObserver;

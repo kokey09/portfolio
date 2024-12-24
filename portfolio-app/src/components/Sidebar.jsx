@@ -22,14 +22,14 @@ function Sidebar() {
     return (
         <aside
             ref={sidebarRef}
-            className={`custom-left-shadow text-text-dark bg-light fixed right-0 top-0 flex h-full w-1/4 transform flex-col items-center justify-center gap-56 transition-transform duration-300 ease-in-out ${
+            className={`custom-left-shadow text-text-dark bg-light fixed right-0 top-0 z-50 flex h-full w-1/2 transform flex-col items-center justify-center gap-56 transition-transform duration-300 ease-in-out lg:w-1/4 ${
                 isSidebarOpen ? "translate-x-0" : "translate-x-full"
             }`}
         >
             <img
                 src={close}
                 alt="close"
-                className="bg-dark absolute right-3 top-3 cursor-pointer rounded-full p-3"
+                className="bg-dark absolute right-3 top-3 cursor-pointer rounded-full p-3 hover:bg-red-400"
                 onClick={closeSidebar}
             />
 
